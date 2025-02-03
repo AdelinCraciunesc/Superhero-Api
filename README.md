@@ -99,24 +99,24 @@ The Humble Superhero API is an application that allows users to add and retrieve
     The api wiil be available at `http://localhost:3000/`
 
 ## API Usage
-### Add a Superhero
-#### Curl
+1. **Add a Superhero**
+    Curl
     ```bash
     curl -X POST http://localhost:3000/superheroes \
     -H "Content-Type: application/json" \
     -d '{"name": "Spider-Man", "superpower": "Wall-crawling", "humilityScore": 9}'
     ```
-#### Invoke-WebRequest(powershell)
+    Invoke-WebRequest(powershell)
     ```bash
     Invoke-WebRequest -Uri "http://localhost:3000/superheroes" -Method Post -Headers @{ "Content-Type" = "application/json" } -Body '{"name": "Spider-Man", "superpower": "Spider like powers", "humilityScore": 9}'
     ```
 
-#### Get Superheroes
-#### Curl
+2. **Get Superheroes**
+    Curl
     ```bash
     curl -X GET http://localhost:3000/superheroes
     ```
-#### Invoke-WebRequest(powershell)
+    Invoke-WebRequest(powershell)
     ```bash
     Invoke-WebRequest -Uri "http://localhost:3000/superheroes" -Method Get
     ```
