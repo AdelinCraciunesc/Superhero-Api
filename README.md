@@ -81,7 +81,6 @@ The Humble Superhero API is an application that allows users to add and retrieve
 5. **Frontend Setup:**
 
     ```bash
-    cd ..
     cd humble-superhero-frontend
     ```
 
