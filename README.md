@@ -11,6 +11,7 @@ The Humble Superhero API is an application that allows users to add and retrieve
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Jest Testing](#jest-tests)
 - [Collaboration](#colaboration-notes)
 - [If i had more time](#if-i-had-more-time)
 
@@ -111,6 +112,28 @@ The Humble Superhero API is an application that allows users to add and retrieve
     Invoke-WebRequest -Uri "http://localhost:3000/superheroes" -Method Post -Headers @{ "Content-Type" = "application/json" } -Body '{"name": "Spider-Man", "superpower": "Spider like powers", "humilityScore": 9}'
     ```
 
+    **Response Example**
+    ```bash
+    StatusCode        : 201
+    StatusDescription : Created
+    Content           : {"name":"Spider-Man","superpower":"Spider like powers","humilityScore":9}
+    RawContent        : HTTP/1.1 201 Created
+                        Access-Control-Allow-Origin: http://localhost:5173
+                        Vary: Origin
+                        Connection: keep-alive
+                        Keep-Alive: timeout=5
+                        Content-Length: 73
+                        Content-Type: application/json; charset=utf-8...
+    Forms             : {}
+    Headers           : {[Access-Control-Allow-Origin, http://localhost:5173], [Vary, Origin], [Connection, keep-alive],
+                        [Keep-Alive, timeout=5]...}
+    Images            : {}
+    InputFields       : {}
+    Links             : {}
+    ParsedHtml        : mshtml.HTMLDocumentClass
+    RawContentLength  : 73
+    ```
+
 2. **Get Superheroes**
     Curl
     ```bash
@@ -120,6 +143,68 @@ The Humble Superhero API is an application that allows users to add and retrieve
     ```bash
     Invoke-WebRequest -Uri "http://localhost:3000/superheroes" -Method Get
     ```
+
+    **Response Example**
+    ```bash
+    StatusCode        : 200
+    StatusDescription : OK
+    Content           : [{"name":"Spider-Man","superpower":"Spider like
+                        powers","humilityScore":9},{"name":"Flash","superpower":"Fast
+                        speed","humilityScore":8},{"name":"Superman","superpower":"Strength","humilityScore":7},{"...
+    RawContent        : HTTP/1.1 200 OK
+                        Access-Control-Allow-Origin: http://localhost:5173
+                        Vary: Origin
+                        Connection: keep-alive
+                        Keep-Alive: timeout=5
+                        Content-Length: 255
+                        Content-Type: application/json; charset=utf-8
+                        Da...
+    Forms             : {}
+    Headers           : {[Access-Control-Allow-Origin, http://localhost:5173], [Vary, Origin], [Connection, keep-alive],
+                        [Keep-Alive, timeout=5]...}
+    Images            : {}
+    InputFields       : {}
+    Links             : {}
+    ParsedHtml        : mshtml.HTMLDocumentClass
+    RawContentLength  : 255
+    ```
+
+## Jest Tests
+
+This project includes **Jest** tests to ensure the functionality of the superhero API endpoints.
+
+### 1. **Run Jest Tests**
+
+To run the tests for the backend:
+
+```bash
+npm run test
+```
+
+**Example**
+```js
+    it('should create a new superhero', async () => {
+        // Example superhero data to be passed into the POST request
+        const superhero = { 
+        name: 'Thor', 
+        superpower: 'God', 
+        humilityScore: 7 
+        };
+
+        // Mock the service method to return the superhero object
+        service.createSuperHero = jest.fn().mockReturnValue(superhero);
+
+        // Call the controller method and check if the result is correct
+        const result = await controller.createSuperhero(superhero);
+
+        // Expect the result to match the superhero object
+        expect(result).toEqual(superhero);
+
+        // Ensure that the service method was called with the expected argument
+        expect(service.createSuperHero).toHaveBeenCalledWith(superhero);
+    });
+```
+
 
 ## Colaboration Notes
 If I worked in a team for this project I would propose:
