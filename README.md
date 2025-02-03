@@ -183,26 +183,26 @@ npm run test
 
 **Example**
 ```js
-    it('should create a new superhero', async () => {
-        // Example superhero data to be passed into the POST request
-        const superhero = { 
-        name: 'Thor', 
-        superpower: 'God', 
-        humilityScore: 7 
-        };
+it('should create a new superhero', async () => {
+    // Example superhero data to be passed into the POST request
+    const superhero = { 
+    name: 'Thor', 
+    superpower: 'God', 
+    humilityScore: 7 
+    };
 
-        // Mock the service method to return the superhero object
-        service.createSuperHero = jest.fn().mockReturnValue(superhero);
+    // Mock the service method to return the superhero object
+    service.createSuperHero = jest.fn().mockReturnValue(superhero);
 
-        // Call the controller method and check if the result is correct
-        const result = await controller.createSuperhero(superhero);
+    // Call the controller method and check if the result is correct
+    const result = await controller.createSuperhero(superhero);
 
-        // Expect the result to match the superhero object
-        expect(result).toEqual(superhero);
+    // Expect the result to match the superhero object
+    expect(result).toEqual(superhero);
 
-        // Ensure that the service method was called with the expected argument
-        expect(service.createSuperHero).toHaveBeenCalledWith(superhero);
-    });
+    // Ensure that the service method was called with the expected argument
+    expect(service.createSuperHero).toHaveBeenCalledWith(superhero);
+});
 ```
 
 
